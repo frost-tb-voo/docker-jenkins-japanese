@@ -1,0 +1,22 @@
+sudo: required
+
+language: java
+
+services:
+  - docker
+
+before_install:
+- docker pull jenkins/jenkins:lts
+
+script:
+- docker build -t novsyama/jenkins-japanese:lts .
+- docker images
+
+deploy:
+  provider: script
+  script: bash push
+  on:
+    branch: master
+
+notifications:
+  email: false
