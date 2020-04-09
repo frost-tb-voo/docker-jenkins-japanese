@@ -1,4 +1,7 @@
 #!/bin/bash
-echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-docker push novsyama/jenkins-japanese:lts
 
+TAG=`date +%Y%m%d`
+echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+docker tag novsyama/jenkins-japanese:lts novsyama/jenkins-japanese:${TAG}
+docker push novsyama/jenkins-japanese:${TAG}
+docker push novsyama/jenkins-japanese:lts
