@@ -1,0 +1,12 @@
+#!/bin/sh
+
+NEW_IMAGE=ghcr.io/frost-tb-voo/jenkins-japanese
+DIR=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
+echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+cd ${DIR}/..
+docker pull jenkins/jenkins:lts
+docker build -t ${NEW_IMAGE} --build-arg VCS_REF=`git rev-parse --short HEAD` .
+
+docker tag ${NEW_IMAGE} ${NEW_IMAGE}:local
+docker images ${NEW_IMAGE}
+
