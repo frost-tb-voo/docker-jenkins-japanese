@@ -9,8 +9,7 @@ before_install:
 - docker pull jenkins/jenkins:lts
 
 script:
-- docker build -t novsyama/jenkins-japanese:lts --build-arg VCS_REF=`git rev-parse --short HEAD` .
-- docker images
+- bash ./hooks/build
 
 deploy:
   provider: script
