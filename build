@@ -1,4 +1,0 @@
-#!/bin/sh
-
-docker build -t novsyama/jenkins-japanese:lts --build-arg VCS_REF=`git rev-parse --short HEAD` .
-
