@@ -1,5 +1,5 @@
 ARG TZ=Asia/Tokyo
-ARG LC_ALL=jp_JP.UTF-8
+ARG LC_ALL=ja_JP.UTF-8
 
 FROM jenkins/jenkins:lts
 ARG VCS_REF
@@ -20,8 +20,8 @@ RUN apt-get -y update \
  && apt-get -y autoclean \
  && apt-get -y autoremove \
  && rm -rf /var/lib/apt/lists/*
-RUN locale-gen ${LANG}
 RUN echo ${LANG} UTF-8 >> /etc/locale.gen
+RUN locale-gen ${LANG}
 RUN dpkg-reconfigure -f noninteractive locales
 RUN update-locale LANG=${LANG}
 
